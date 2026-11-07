@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sushma: Lifestyle & Travel Influencer Portfolio</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Custom Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-pink': '#FFC0CB',
+                        'brand-navy': '#1D2A4D',
+                        'brand-cream': '#F8F3ED',
+                        'brand-light': '#F3E4D9',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Playfair Display', 'serif'],
+                    },
+                    keyframes: {
+                        'fade-in-up': {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        'blob': {
+                            '0%, 100%': { borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%' },
+                            '50%': { borderRadius: '30% 60% 70% 40% / 50% 60% 30% 60%' },
+                        }
+                    },
+                    animation: {
+                        'fade-in-up': 'fade-in-up 0.6s ease-out forwards',
+                        'blob': 'blob 10s ease-in-out infinite both',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Custom CSS for blob mask and smooth reveal -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600;700&display=swap');
+
+        /* Blob shape for the headshot */
+        .blob-mask {
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            animation: blob 10s ease-in-out infinite both;
+        }
+
+        /* Initial state for reveal animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        /* Target state for reveal animation */
+        .revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Style for the fixed header */
+        #header.scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(8px);
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 antialiased bg-white">
+
+    <!-- Fixed Header Navigation -->
+    <header id="header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <a href="#meet" class="font-heading text-2xl font-bold text-brand-navy hover:text-brand-pink transition duration-300">Sushma</a>
+            <div class="hidden md:flex space-x-8 text-lg font-medium">
+                <a href="#meet" class="text-brand-navy hover:text-brand-pink transition duration-300">Meet</a>
+                <a href="#create" class="text-brand-navy hover:text-brand-pink transition duration-300">Create</a>
+                <a href="#impact" class="text-brand-navy hover:text-brand-pink transition duration-300">Reach</a>
+                <a href="#brands" class="text-brand-navy hover:text-brand-pink transition duration-300">Brands</a>
+                <a href="#contact" class="text-brand-navy hover:text-brand-pink transition duration-300">Contact</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-brand-navy text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-white/95 backdrop-blur-sm z-40 hidden flex flex-col items-center justify-center space-y-8">
+        <button id="close-menu-button" class="absolute top-6 right-6 text-brand-navy text-3xl">
+            <i class="fas fa-times"></i>
+        </button>
+        <a href="#meet" class="text-4xl font-heading text-brand-navy hover:text-brand-pink transition duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Meet</a>
+        <a href="#create" class="text-4xl font-heading text-brand-navy hover:text-brand-pink transition duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Create</a>
+        <a href="#impact" class="text-4xl font-heading text-brand-navy hover:text-brand-pink transition duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Reach</a>
+        <a href="#brands" class="text-4xl font-heading text-brand-navy hover:text-brand-pink transition duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Brands</a>
+        <a href="#contact" class="text-4xl font-heading text-brand-navy hover:text-brand-pink transition duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Contact</a>
+    </div>
+
+    <main>
+        <!-- SLIDE 1: Meet Sushma -->
+        <section id="meet" class="min-h-screen pt-24 pb-12 flex items-center relative overflow-hidden bg-brand-cream">
+            <!-- Decorative shapes -->
+            <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-brand-light rounded-full opacity-50 blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-72 h-72 bg-brand-pink rounded-full opacity-50 blur-3xl"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <!-- Text Content -->
+                    <div class="order-2 md:order-1 space-y-6 text-center md:text-left">
+                        <h1 class="font-heading text-5xl sm:text-6xl font-extrabold text-brand-navy reveal">
+                            Hello, I'm Sushma!
+                        </h1>
+                        <p class="text-xl text-gray-600 reveal delay-100">
+                            I’m a Germany-based lifestyle and travel creator sharing authentic experiences, discovering new brands, exploring fashion and beauty, and showcasing food and everyday life in Europe.
+</p>
+                        <p class="text-lg text-gray-700 reveal delay-200">
+                            I create fun, relatable, and engaging content about fashion, travel, lifestyle, food, career, and self-development. With a fun and minimalistic approach, I’ve built a community that trusts my recommendations and connects with my storytelling.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4 pt-4 justify-center md:justify-start reveal delay-300">
+                            <a href="#contact" class="px-8 py-3 bg-brand-navy text-white font-semibold rounded-full shadow-lg hover:bg-brand-pink hover:text-brand-navy transition duration-300 transform hover:scale-105">
+                                Work With Me
+                            </a>
+                            <a href="#create" class="px-8 py-3 bg-white border border-brand-navy text-brand-navy font-semibold rounded-full shadow-lg hover:bg-brand-light transition duration-300 transform hover:scale-105">
+                                See My Work
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Image -->
+                    <div class="order-1 md:order-2 flex justify-center reveal delay-400">
+                        <div class="relative w-80 h-80 md:w-[28rem] md:h-[28rem]">
+                            <div class="absolute inset-0 bg-brand-pink rounded-full opacity-10 blur-lg transform translate-x-4 translate-y-4"></div>
+                            <!-- Headshot: Sushma in Pink Sari (Updated file name) -->
+                            <img 
+                                src="images/sushma.JPG" 
+                                alt="Sushma Headshot" 
+                                class="blob-mask w-full h-full object-cover shadow-2xl relative z-10 border-4 border-white"
+                                loading="lazy"
+                                onerror="this.onerror=null; this.src='https://placehold.co/500x500/FFC0CB/1D2A4D?text=Sushma+Image';"
+                            >
+                            
+                            <!-- Floating badge -->
+                            <div class="absolute -bottom-4 -right-4 bg-white p-4 rounded-xl shadow-lg z-20 flex items-center gap-3 animate-bounce" style="animation-duration: 3s;">
+                                <i class="fas fa-check-circle text-brand-pink text-2xl"></i>
+                                <span class="font-semibold text-brand-navy">Authentic Content Creator</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 2: What I Create -->
+        <section id="create" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 reveal">
+                    <span class="text-brand-pink text-sm font-semibold uppercase tracking-widest">My Expertise</span>
+                    <h2 class="font-heading text-4xl font-bold text-brand-navy mt-2">What I Create</h2>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <!-- Content List -->
+                    <div class="space-y-8 reveal delay-100">
+                        <div class="flex gap-4">
+                            <i class="fas fa-camera text-3xl text-brand-pink mt-1"></i>
+                            <div>
+                                <h3 class="font-heading text-2xl font-semibold text-brand-navy">Visual Storytelling & Product Promotion</h3>
+                                <p class="text-gray-700">Creating high quality photos and videos that showcase brands, products and services through authentic and engaging content.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-4">
+                            <i class="fas fa-plane-departure text-3xl text-brand-pink mt-1"></i>
+                            <div>
+                                <h3 class="font-heading text-2xl font-semibold text-brand-navy">Travel & Lifestyle Vlogs</h3>
+                                <p class="text-gray-700">Engaging short-form video content (Reels/TikTok) focused on  germany and european destinations, everyday life abroad, travel experiences, and cultural discoveries.</p>
+                            </div>
+                        </div>
+                         <div class="flex gap-4">
+                            <i class="fas fa-utensils text-3xl text-brand-pink mt-1"></i>
+                            <div>
+                                <h3 class="font-heading text-2xl font-semibold text-brand-navy">Food , Restaurants & Local Discoveries</h3>
+                                <p class="text-gray-700">Showing restaurant experiences , Indian cuisine ,grocery stores , foodproducts and exciting new finds across Germany.</p>
+                            </div>
+                        </div>
+                         <div class="flex gap-4">
+                            <i class="fas fa-spa text-3xl text-brand-pink mt-1"></i>
+                            <div>
+                                <h3 class="font-heading text-2xl font-semibold text-brand-navy">Beauty & Skincare</h3>
+                                <p class="text-gray-700">Skincare routines,  beauty discoveries, makeup and authentic product reviews.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <i class="fas fa-pen-fancy text-3xl text-brand-pink mt-1"></i>
+                            <div>
+                                <h3 class="font-heading text-2xl font-semibold text-brand-navy">Fun, Relatable, Authentic Content</h3>
+                                <p class="text-gray-700">Content that connects, entertains, and keeps your audience coming back for more.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Collage (Updated file names) -->
+                    <div class="relative h-[600px] w-full reveal delay-300">
+                        <!-- Image 1: Purple Jacket (Lifestyle) -->
+                        <div class="absolute top-0 left-0 w-2/3 h-64 transform -rotate-3 hover:rotate-0 transition duration-500 z-10 group">
+                            <img 
+                                src="image7.jpeg" 
+                                alt="Lifestyle" 
+                                class="w-full h-full object-cover rounded-xl shadow-lg border-4 border-white group-hover:scale-105 transition"
+                                loading="lazy"
+                                onerror="this.onerror=null; this.src='https://placehold.co/300x200/F3E4D9/1D2A4D?text=Lifestyle+Shot';"
+                            >
+                        </div>
+                        <!-- Image 2: Siting in the boat (Travel) -->
+                        <div class="absolute top-40 right-0 w-3/5 h-64 transform rotate-6 hover:rotate-0 transition duration-500 z-20 group">
+                            <img 
+                                src="image8.jpeg" 
+                                alt="Travel" 
+                                class="w-full h-full object-cover rounded-xl shadow-lg border-4 border-white group-hover:scale-105 transition"
+                                loading="lazy"
+                                onerror="this.onerror=null; this.src='https://placehold.co/300x200/F8F3ED/1D2A4D?text=Travel+Vlog';"
+                            >
+                        </div>
+                        <!-- Image 3: Instagram Frame -->
+                        <div class="absolute bottom-0 left-10 w-2/3 h-72 transform -rotate-2 hover:rotate-0 transition duration-500 z-30 group">
+                            <img 
+                                src="image6.jpeg" 
+                                alt="Social" 
+                                class="w-full h-full object-cover rounded-xl shadow-lg border-4 border-white group-hover:scale-105 transition"
+                                loading="lazy"
+                                onerror="this.onerror=null; this.src='https://placehold.co/300x250/FFC0CB/1D2A4D?text=Instagram+Post';"
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 3: Impact & Reach -->
+        <section id="impact" class="relative py-24 bg-fixed bg-cover bg-center" style="background-image: url('https://placehold.co/1920x800/1D2A4D/F8F3ED?text=Audience+Background');">
+            <!-- Overlay -->
+            <div class="absolute inset-0 bg-brand-navy/60 mix-blend-multiply"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <h2 class="font-heading text-4xl font-bold text-white text-center mb-16 reveal">My Audience at a Glance</h2>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                    <!-- Stat 1: Followers (Updated to 4350+) -->
+                    <div class="bg-white/10 p-6 rounded-xl backdrop-blur-sm reveal">
+                        <i class="fas fa-users text-4xl text-brand-pink mb-3"></i>
+                        <p class="text-4xl font-bold text-white font-heading">11000+</p>
+                        <p class="text-lg text-gray-200">Total Followers</p>
+                    </div>
+
+                    <!-- Stat 2: Engagement Rate (Updated to 11.4%) -->
+                    <div class="bg-white/10 p-6 rounded-xl backdrop-blur-sm reveal delay-100">
+                        <i class="fas fa-heart text-4xl text-brand-pink mb-3"></i>
+                        <p class="text-4xl font-bold text-white font-heading">3 Million+</p>
+                        <p class="text-lg text-gray-200">Total Views </p>
+                    </div>
+
+                    <!-- Stat 3: Primary Demo -->
+                    <div class="bg-white/10 p-6 rounded-xl backdrop-blur-sm reveal delay-200">
+                        <i class="fas fa-female text-4xl text-brand-pink mb-3"></i>
+                        <p class="text-4xl font-bold text-white font-heading">*India *Brazil *USA </p>
+                        <p class="text-lg text-gray-200">Top countries</p>
+                    </div>
+
+                    <!-- Stat 4: Age Range -->
+                    <div class="bg-white/10 p-6 rounded-xl backdrop-blur-sm reveal delay-300">
+                        <i class="fas fa-calendar-alt text-4xl text-brand-pink mb-3"></i>
+                        <p class="text-4xl font-bold text-white font-heading">18-45</p>
+                        <p class="text-lg text-gray-200">Key Age Demographic</p>
+                    </div>
+                </div>
+
+                <div class="mt-16 text-center reveal delay-400">
+                    <p class="text-xl text-white italic">
+                        "My audience trusts my recommendations, leading to high conversion rates for lifestyle products."
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 4: Brands -->
+        <!-- BRAND COLLABORATIONS SECTION -->
+<section id="collaborations" class="py-20 bg-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+<div class="grid md:grid-cols-2 gap-10 items-center">
+
+<!-- LEFT: BRAND LIST -->
+<div class="reveal">
+
+<p class="text-sm uppercase tracking-widest
+text-brand-pink font-semibold mb-4">
+Brand Collaborations
+</p>
+
+<h2 class="font-heading text-3xl font-bold
+text-brand-navy mb-8">
+Brands & Businesses I've Worked With
+</h2>
+
+<!-- BEAUTY -->
+<div class="mb-6">
+<h3 class="font-heading text-lg font-bold
+text-brand-navy mb-2">
+BEAUTY & FASHION
+</h3>
+<p class="text-gray-700 leading-relaxed">
+COSRX, Lovisa, Callie Gifts
+</p>
+</div>
+
+<!-- FOOD -->
+<div class="mb-6">
+<h3 class="font-heading text-lg font-bold
+text-brand-navy mb-2">
+FOOD & FMCG
+</h3>
+<p class="text-gray-700 leading-relaxed">
+EDEKA, Tilda, Truly Indian,Heer Rice  
+</p>
+</div>
+
+<!-- GROCERY -->
+<div class="mb-6">
+<h3 class="font-heading text-lg font-bold
+text-brand-navy mb-2">
+INDIAN GROCERY & RETAIL
+</h3>
+<p class="text-gray-700 leading-relaxed">
+Annachi, Dookan, GRD Foods,
+WeDeliver and other Indian grocery stores in Germany
+</p>
+</div>
+
+<!-- FINANCE -->
+<div class="mb-6">
+<h3 class="font-heading text-lg font-bold
+text-brand-navy mb-2">
+FINANCE & DIGITAL SERVICES
+</h3>
+<p class="text-gray-700 leading-relaxed">
+ScopeX, Zolt Money Transfer
+</p>
+</div>
+
+<!-- RESTAURANTS -->
+<div class="mb-6">
+<h3 class="font-heading text-lg font-bold
+text-brand-navy mb-2">
+RESTAURANTS & FOOD EXPERIENCES
+</h3>
+<p class="text-gray-700 leading-relaxed">
+Amrit Berlin, Dhal Tadka, Jhasvik,Mumbai Spice
+Curryleaf and local food businesses
+</p>
+</div>
+
+<!-- OTHER BRANDS -->
+<div class="mb-6">
+<h3 class="font-heading text-lg font-bold
+text-brand-navy mb-2">
+LIFESTYLE & OTHER BRANDS
+</h3>
+<p class="text-gray-700 leading-relaxed">
+PrintChapters and many more!
+</p>
+</div>
+
+</div>
+
+<!-- RIGHT: COLLABORATION COLLAGE -->
+<div class="reveal delay-200">
+<img
+src="images/brand-collage.png"
+alt="Sushma's brand collaboration portfolio"
+class="w-full h-auto object-cover rounded-xl
+shadow-lg"
+loading="lazy"
+>
+</div>
+
+</div>
+</div>
+
+
+                 
+
+        <!-- SLIDE 5: What I Offer -->
+        <section class="py-20 bg-white relative overflow-hidden">
+            <!-- Visual Accent Background -->
+            <div class="absolute right-0 top-1/2 -translate-y-1/2 w-1/3 h-full opacity-5 pointer-events-none hidden lg:block">
+                <img src="https://placehold.co/600x800/FFC0CB/1D2A4D?text=Texture" alt="Water Texture" class="w-full h-full object-cover grayscale" loading="lazy">
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center mb-16 reveal">
+                    <span class="text-brand-pink text-sm font-semibold uppercase tracking-widest">Partnership Options</span>
+                    <h2 class="font-heading text-4xl font-bold text-brand-navy mt-2">Let's Partner</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Offer 1 -->
+                    <div class="bg-brand-cream p-8 rounded-xl shadow-lg border-t-4 border-brand-pink transform hover:scale-[1.02] transition duration-300 reveal">
+                        <h3 class="font-heading text-2xl font-bold text-brand-navy mb-3">The Quick Start</h3>
+                        <p class="text-gray-700 mb-4">A single, impactful piece of content for maximum immediate reach.</p>
+                        <ul class="space-y-2 text-gray-800">
+                            <li class="flex items-center"><i class="fas fa-check-circle text-brand-pink mr-2"></i> 1 Dedicated Instagram Reel/Post</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-brand-pink mr-2"></i> 24hr Story Promotion</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-brand-pink mr-2"></i> Organic License Only</li>
+                        </ul>
+                    </div>
+
+                    <!-- Offer 2 -->
+                    <div class="bg-brand-cream p-8 rounded-xl shadow-lg border-t-4 border-brand-pink transform hover:scale-[1.02] transition duration-300 reveal delay-100">
+                        <h3 class="font-heading text-2xl font-bold text-brand-navy mb-3">The Engagement Driver (Popular)</h3>
+                        <p class="text-gray-700 mb-4">A campaign designed to build awareness and generate consistent engagement.</p>
+                        <ul class="space-y-2 text-gray-800">
+                            <li class="flex items-center"><i class="fas fa-check-circle text-brand-pink mr-2"></i> 1 Reel + 1 Static Post</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-brand-pink mr-2"></i> 3-Day Story Series (Swipe Up)</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-brand-pink mr-2"></i> 30-Day Usage Rights (Paid Ads)</li>
+                        </ul>
+                    </div>
+
+                    <!-- Offer 3 -->
+                    <div class="bg-brand-cream p-8 rounded-xl shadow-lg border-t-4 border-brand-pink transform hover:scale-[1.02] transition duration-300 reveal delay-200">
+                        <h3 class="font-heading text-2xl font-bold text-brand-navy mb-3">Full Ambassador Package</h3>
+                        <p class="text-gray-700 mb-4">Long-term partnership with full brand integration and consistent content volume.</p>
+                        <ul class="space-y-2 text-gray-800">
+                            <li class="flex items-center"><i class="fas fa-check-circle text-brand-pink mr-2"></i> 4 Posts/Reels per month</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-brand-pink mr-2"></i> Dedicated Blog Review</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-brand-pink mr-2"></i> Exclusive Discount Code</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 6: Contact -->
+        <section id="contact" class="py-24 bg-brand-navy text-white">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="font-heading text-4xl font-bold mb-4 reveal">Ready to Partner?</h2>
+                <p class="text-xl mb-12 reveal delay-100">
+                    Let's discuss your brand's goals and how **Desi Girl in Germany** can help you reach a highly engaged audience.
+                </p>
+
+                <!-- Contact Info -->
+                <div class="space-y-6 reveal delay-200">
+                    <div class="flex items-center justify-center gap-4">
+                        <i class="fas fa-envelope text-brand-pink text-2xl"></i>
+                        <span class="text-lg">susbow@gmail.com</span>
+                    </div>
+                    
+                    <!-- Social Links -->
+                    <div class="flex justify-center space-x-6 pt-4">
+                        <a href="https://www.instagram.com/desigirl_in_germany?igsh=dHlkcG5vNzk4aHV5&utm_source=qr" target="_blank" class="text-3xl text-brand-pink hover:text-white transition duration-300 transform hover:scale-110" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        
+                    </div>
+                </div>
+
+                <p class="mt-16 text-sm text-gray-400 reveal delay-300">
+                    Portfolio designed by Chatgpt. All rights reserved by Sushma.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- JavaScript for smooth scrolling, header effect, and reveal animation -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const header = document.getElementById('header');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const closeMenuButton = document.getElementById('close-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            // --- Header Scroll Effect ---
+            const handleScroll = () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            };
+            window.addEventListener('scroll', handleScroll);
+            handleScroll(); // Check on load
+
+            // --- Mobile Menu Toggle ---
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.remove('hidden');
+            });
+
+            closeMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+            
+            // --- Smooth Scroll for Mobile Menu Links ---
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    // Hide the menu immediately
+                    mobileMenu.classList.add('hidden');
+                    // Handle smooth scroll manually if needed, though scroll-smooth in HTML tag should cover it
+                });
+            });
+
+
+            // --- Reveal on Scroll Animation ---
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1, // Trigger when 10% of the element is visible
+                rootMargin: '0px 0px -50px 0px' // Start slightly before reaching the bottom
+            });
+
+            document.querySelectorAll('.reveal').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
